@@ -19,7 +19,6 @@ namespace HanoiGUI
         {
             InitializeComponent();
 
-            this.BackColor = Color.LightGray;
             this.Height = PLATE_HEIGHT;
         }
 
@@ -51,11 +50,11 @@ namespace HanoiGUI
         {
             if (b)
             {
-                this.BackColor = Color.White;
+                this.BackColor = Color.LightGray;
             }
             else
             {
-                this.BackColor = Color.LightGray;
+                this.BackColor = Color.Brown;
             }
         }
     }

@@ -109,5 +109,13 @@ namespace HanoiGUI
         {
             e.Graphics.FillRectangle(Brushes.Gray, this.Width / 2 - 2, this.Top + 10, 4, Height - 30);
         }
+
+        internal void AllSetMoving(bool b)
+        {
+            foreach (var plate in plates)
+            {
+                plate.SetMoving(b);
+            }
+        }
     }
 }
