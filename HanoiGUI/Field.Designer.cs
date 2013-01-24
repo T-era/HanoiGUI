@@ -36,8 +36,8 @@
             // ColumnA
             // 
             this.ColumnA.AllowDrop = true;
-            this.ColumnA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.ColumnA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
             this.ColumnA.Location = new System.Drawing.Point(0, 0);
             this.ColumnA.Name = "ColumnA";
             this.ColumnA.Size = new System.Drawing.Size(50, 150);
@@ -57,8 +57,8 @@
             // ColumnC
             // 
             this.ColumnC.AllowDrop = true;
-            this.ColumnC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ColumnC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.ColumnC.Location = new System.Drawing.Point(93, 0);
             this.ColumnC.Name = "ColumnC";
             this.ColumnC.Size = new System.Drawing.Size(57, 150);
@@ -74,6 +74,7 @@
             this.Controls.Add(this.ColumnA);
             this.Name = "Field";
             this.SizeChanged += new System.EventHandler(this.Field_SizeChanged);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Field_MouseMove);
             this.ResumeLayout(false);
 
         }

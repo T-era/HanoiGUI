@@ -49,6 +49,10 @@ namespace HanoiGUI
         public Field()
         {
             InitializeComponent();
+
+            ColumnA.MouseMove += this.Field_MouseMove;
+            ColumnB.MouseMove += this.Field_MouseMove;
+            ColumnC.MouseMove += this.Field_MouseMove;
         }
 
         internal void InitPlates(int number)
@@ -84,6 +88,16 @@ namespace HanoiGUI
             ColumnA.Left = 0;
             ColumnB.Left = this.Width / 3;
             ColumnC.Left = this.Width / 3 * 2;
+        }
+
+        private void Field_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.None)
+            {
+                ColumnA.AllSetMoving(false);
+                ColumnB.AllSetMoving(false);
+                ColumnC.AllSetMoving(false);
+            }
         }
     }
 }
