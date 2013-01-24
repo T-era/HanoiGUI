@@ -61,7 +61,10 @@ namespace HanoiGUI
                 var temp = plate;
                 temp.MouseDown += (o, e) =>
                 {
-                    this.DoDragDrop(new PlateDrag(temp.NowOn, temp, temp.NowOn.MovingPlateOver(temp).ToList<IPlate>()), DragDropEffects.Move);
+                    if (temp.IsMovablePlate())
+                    {
+                        this.DoDragDrop(new PlateDrag(temp.NowOn, temp, temp.NowOn.MovingPlateOver(temp).ToList<IPlate>()), DragDropEffects.Move);
+                    }
                 };
                 ColumnA.AddPlate(temp);
             }

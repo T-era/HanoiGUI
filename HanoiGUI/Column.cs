@@ -14,9 +14,11 @@ namespace HanoiGUI
 
     public partial class Column : UserControl
     {
-        public Position Where { set; get; }
         internal event EventHandler<PlateMovingEvent> PlateMoving;
+
         private readonly LinkedList<Plate> plates = new LinkedList<Plate>();
+        public Position Where { set; get; }
+        public Plate TopPlate { get { return plates.First.Value; } }
 
         public Column()
         {
@@ -61,6 +63,7 @@ namespace HanoiGUI
         private void Column_SizeChanged(object sender, EventArgs e)
         {
             ResetPosition();
+            Invalidate();
         }
         private void ResetPosition()
         {

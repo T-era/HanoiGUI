@@ -13,8 +13,11 @@ namespace HanoiGUI
 
     public partial class Plate : UserControl, IPlate
     {
-        internal Column NowOn { set; get; }
         internal const int PLATE_HEIGHT = 10;
+
+        internal int PlateNo { private set; get; }
+        internal Column NowOn { set; get; }
+
         public Plate()
         {
             InitializeComponent();
@@ -29,7 +32,7 @@ namespace HanoiGUI
         {
             if (num == 1)
             {
-                return new[] { new Plate() { Width = MAX_WIDTH, } };
+                return new[] { new Plate() { Width = MAX_WIDTH, PlateNo = 1 } };
             }
             else
             {
@@ -37,14 +40,14 @@ namespace HanoiGUI
                 Plate[] ret = new Plate[num];
                 for (int i = 0; i < num; i++)
                 {
-                    ret[i] = new Plate() { Width = MAX_WIDTH - d * i, };
+                    ret[i] = new Plate() { Width = MAX_WIDTH - d * i, PlateNo = num - i };
                 }
                 return ret;
             }
         }
         public override string ToString()
         {
-            return this.Width.ToString();
+            return this.PlateNo.ToString();
         }
 
         internal void SetMoving(bool b)
@@ -58,10 +61,12 @@ namespace HanoiGUI
                 this.BackColor = Color.LightGray;
             }
         }
-    }
 
-    class PlateMoveStartingEventArgs : EventArgs
-    {
-        public Plate Plate { set; get; }
+        internal bool IsMovablePlate()
+        {
+            return PlateNo == 1
+                || NowOn.TopPlate.PlateNo == 1
+                || NowOn.TopPlate.PlateNo == PlateNo;
+        }
     }
 }
