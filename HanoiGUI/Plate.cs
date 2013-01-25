@@ -18,6 +18,22 @@ namespace HanoiGUI
         internal int PlateNo { private set; get; }
         internal Column NowOn { set; get; }
 
+        private Color BorderColorL;
+        private Color BorderColorD;
+        public override Color BackColor
+        {
+            get { return base.BackColor; }
+            set
+            {
+                base.BackColor = value;
+                this.BorderColorL = GetNewColor(value, x => (x + 255) / 2);
+                this.BorderColorD = GetNewColor(value, x => x * 4 / 5);
+            }
+        }
+        private Color GetNewColor(Color b, Func<int, int> f) {
+            return Color.FromArgb(b.A, f(b.R), f(b.G), f(b.B));
+        }
+
         public Plate()
         {
             InitializeComponent();
@@ -66,6 +82,17 @@ namespace HanoiGUI
             return PlateNo == 1
                 || NowOn.TopPlate.PlateNo == 1
                 || NowOn.TopPlate.PlateNo == PlateNo;
+        }
+
+        private const int BORDER_WIDTH = 1;
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+
+            e.Graphics.FillRectangle(new SolidBrush(BorderColorL), 0, 0, Width, BORDER_WIDTH);
+            e.Graphics.FillRectangle(new SolidBrush(BorderColorL), 0, 0, BORDER_WIDTH, Height);
+            e.Graphics.FillRectangle(new SolidBrush(BorderColorD), 0, Height - BORDER_WIDTH, Width, BORDER_WIDTH);
+            e.Graphics.FillRectangle(new SolidBrush(BorderColorD), Width - BORDER_WIDTH, 0, BORDER_WIDTH, Height);
         }
     }
 }
